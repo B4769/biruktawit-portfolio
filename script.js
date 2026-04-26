@@ -55,7 +55,7 @@ window.addEventListener('load', () => {
         setTimeout(() => {
             loadingScreen.classList.add('hidden');
             initializeAnimations();
-        }, 2500);
+        }, 1000);
     } else {
         // Skip loading screen for navigation between pages
         loadingScreen.style.display = 'none';
@@ -390,6 +390,13 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Lazy Loading for Images
+document.querySelectorAll('img').forEach(img => {
+    if (!img.hasAttribute('loading')) {
+        img.setAttribute('loading', 'lazy');
+    }
+});
 
 // Dynamic Year in Footer
 const footerYear = document.querySelector('.footer-text p');
