@@ -7,22 +7,22 @@ const navLinks = document.querySelectorAll('.nav-link');
 const contactForm = document.getElementById('contactForm');
 const successMessage = document.getElementById('successMessage');
 
-// Loading Screen - Control for seamless navigation
+// Loading Screen - Optimized for faster loading
 window.addEventListener('load', () => {
     // Check if this is the first visit or navigation from external site
     const isFirstVisit = !sessionStorage.getItem('portfolioVisited');
     
     if (isFirstVisit) {
-        // Show loading screen for first visit
+        // Show loading screen for first visit with faster animation
         sessionStorage.setItem('portfolioVisited', 'true');
         
-        // Animate percentage counter
+        // Faster percentage counter
         const progressPercentage = document.querySelector('.progress-percentage');
         const loadingStatus = document.querySelector('.loading-status');
         
         let percentage = 0;
         const percentageInterval = setInterval(() => {
-            percentage += Math.random() * 15 + 5;
+            percentage += Math.random() * 20 + 10; // Faster increment
             if (percentage >= 100) {
                 percentage = 100;
                 clearInterval(percentageInterval);
@@ -31,34 +31,16 @@ window.addEventListener('load', () => {
             if (progressPercentage) {
                 progressPercentage.textContent = Math.floor(percentage) + '%';
             }
-        }, 200);
+        }, 150); // Faster updates
         
-        // Update loading status messages
-        const statusMessages = [
-            'Initializing Portfolio...',
-            'Loading Creative Assets...',
-            'Preparing Design Showcase...',
-            'Optimizing User Experience...',
-            'Portfolio Ready!'
-        ];
-        
-        let messageIndex = 0;
-        const messageInterval = setInterval(() => {
-            if (loadingStatus && messageIndex < statusMessages.length - 1) {
-                loadingStatus.textContent = statusMessages[messageIndex];
-                messageIndex++;
-            } else {
-                clearInterval(messageInterval);
-            }
-        }, 500);
-        
+        // Shorter loading time
         setTimeout(() => {
             loadingScreen.classList.add('hidden');
             initializeAnimations();
-        }, 1000);
+        }, 800); // Reduced from 1000ms
     } else {
         // Skip loading screen for navigation between pages
-        loadingScreen.style.display = 'none';
+        if (loadingScreen) loadingScreen.style.display = 'none';
         initializeAnimations();
     }
 });
